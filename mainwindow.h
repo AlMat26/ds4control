@@ -26,6 +26,8 @@ private slots:
 
     void on_checkBox_automaticRGB_toggled(bool checked);
 
+    void on_dial_autoChangeColor_valueChanged(int value);
+
 private:
     Ui::MainWindow *ui;
 
@@ -34,5 +36,8 @@ private:
 
     void automaticRGBCycle ();
     std::thread *autoRGBthr;
+    unsigned int autometicRGBRate = 500000;
+
+    void updateRGBDials ( unsigned int, unsigned int, unsigned int );
 };
 #endif // MAINWINDOW_H

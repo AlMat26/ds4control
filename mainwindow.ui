@@ -17,13 +17,16 @@
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>50</y>
+      <x>0</x>
+      <y>0</y>
       <width>169</width>
-      <height>207</height>
+      <height>236</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_RGB">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetDefaultConstraint</enum>
+     </property>
      <item>
       <widget class="QLabel" name="HeaderRGB">
        <property name="layoutDirection">
@@ -106,13 +109,49 @@
       <widget class="QGraphicsView" name="RGBview"/>
      </item>
      <item>
-      <widget class="QCheckBox" name="checkBox_automaticRGB">
-       <property name="text">
-        <string>AutoChange</string>
-       </property>
-      </widget>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QCheckBox" name="checkBox_automaticRGB">
+         <property name="text">
+          <string>AutoChange</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QDial" name="dial_autoChangeColor">
+         <property name="minimum">
+          <number>1000</number>
+         </property>
+         <property name="maximum">
+          <number>100000</number>
+         </property>
+         <property name="value">
+          <number>50000</number>
+         </property>
+         <property name="invertedAppearance">
+          <bool>true</bool>
+         </property>
+         <property name="invertedControls">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
     </layout>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>400</y>
+      <width>51</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

@@ -18,6 +18,8 @@ MainWindow::MainWindow(QWidget *parent)
     str = "Blue: " + std::to_string( ds4leds.getRed() );
     ui->label_blue->setText( QString::fromStdString (str) );
     ui->dial_blue->setValue( ds4leds.getBlue() );
+
+    autometicRGBRate = ui->dial_autoChangeColor->value();
 }
 
 MainWindow::~MainWindow()
@@ -113,7 +115,28 @@ void MainWindow::automaticRGBCycle ()
             ds4leds.setBlue ( blue );
         }
 
-        ds4leds.wait(100000);
+        updateRGBDials ( red, green, blue );
+        ds4leds.wait ( autometicRGBRate );
     }
+}
+
+void MainWindow::updateRGBDials ( unsigned int red, unsigned int green, unsigned int blue ) {
+
+    std::string str = "Red: " + std::to_string( red );
+    ui->label_red->setText( QString::fromStdString (str) );
+    ui->dial_red->setValue( red );
+
+    str = "Green: " + std::to_string( green );
+    ui->label_green->setText( QString::fromStdString (str) );
+    ui->dial_green->setValue( green );
+
+    str = "Blue: " + std::to_string( blue );
+    ui->label_blue->setText( QString::fromStdString (str) );
+    ui->dial_blue->setValue( blue );
+}
+
+void MainWindow::on_dial_autoChangeColor_valueChanged(int value)
+{
+    autometicRGBRate = value;
 }
 
