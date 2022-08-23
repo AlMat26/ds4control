@@ -33,6 +33,6 @@ private:
     bool automaticRGB = false;
 
     void automaticRGBCycle ();
-    std::thread autoRGBthr;
+    std::thread *autoRGBthr;
 };
 #endif // MAINWINDOW_H

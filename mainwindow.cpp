@@ -52,7 +52,9 @@ void MainWindow::on_dial_blue_valueChanged(int value)
 void MainWindow::on_checkBox_automaticRGB_toggled(bool checked)
 {
     automaticRGB = checked;
-    autoRGBthr = std::thread([this]{automaticRGBCycle();});
+    if ( checked ) {
+        autoRGBthr = new std::thread([this]{automaticRGBCycle();});
+    }
 }
 
 void MainWindow::automaticRGBCycle ()
@@ -63,6 +65,10 @@ void MainWindow::automaticRGBCycle ()
     red = 255;
     green = 0;
     blue = 0;
+
+    ds4leds.setRed ( red );
+    ds4leds.setGreen ( green );
+    ds4leds.setBlue ( blue );
 
     while (automaticRGB) {
         if ( currentColor == SS_RED && blue == 0 && green != 255 ) {
@@ -107,7 +113,7 @@ void MainWindow::automaticRGBCycle ()
             ds4leds.setBlue ( blue );
         }
 
-        ds4leds.wait(1000000);
+        ds4leds.wait(100000);
     }
 }
 
